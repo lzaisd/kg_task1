@@ -6,7 +6,7 @@ public class MainWindow extends JFrame {
 
     public MainWindow() throws HeadlessException {
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        setSize(800, 600);
+        setExtendedState(MAXIMIZED_BOTH);
 
         dp = new DrawPanel();
         this.add(dp);
