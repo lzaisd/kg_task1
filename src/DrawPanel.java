@@ -14,6 +14,7 @@ public class DrawPanel extends JPanel {
 
     private Door door;
     private Window window;
+    private Moon moon;
 
     public DrawPanel() {
         door = new Door(50, 75, DOOR_COLOR);
@@ -30,6 +31,7 @@ public class DrawPanel extends JPanel {
         drawStars(g2d);
         g2d.setColor(GROUND_COLOR);
         g2d.fillRect(0, getHeight() - groundHeight, getWidth(), groundHeight);
+        moon.drawMoon(g2d);
 
         House house = new House(200, getHeight(), 400, 500, HOUSE_COLOR, door, window);
 
@@ -45,16 +47,17 @@ public class DrawPanel extends JPanel {
         for (int row = 0; row < getHeight()/indent; row++) {
             for (int col = 0; col < getWidth()/indent; col++) {
                 rand = rnd.nextDouble(1);
-                if (rand >= 0.5 && rand < 0.75) {
+                if (rand >= 0.6 && rand < 0.85) {
                     g2d.drawLine(x, y, x, y);
-                } else if (rand >=0.75) {
+                } else if (rand >=0.85) {
                     g2d.drawLine(x - 1, y, x + 1, y);
                     g2d.drawLine(x, y - 1, x, y + 1);
                 }
-                x += indent;
+                x += indent + rnd.nextInt(10) - rnd.nextInt(10);
+                y += rnd.nextInt(10) - rnd.nextInt(10);
             }
             x = indent;
-            y += indent;
+            y = indent * (row + 1);
         }
     }
 }
